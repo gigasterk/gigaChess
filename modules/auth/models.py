@@ -19,9 +19,9 @@ class Base(AsyncAttrs, DeclarativeBase):
 class UserModel(Base):
     username: Mapped[str] = mapped_column(String, unique=True)
     password: Mapped[str]
-    email: Mapped[str | None] = mapped_column(String, unique=True)
+    email: Mapped[str] = mapped_column(String, unique=True)
     age: Mapped[int | None]
     rank: Mapped[int] = mapped_column(Integer, default=0)
     avatar: Mapped[str | None] = mapped_column(String, unique=True)
-    achievements: Mapped[str]
-    game_history: Mapped[str]
+    achievements: Mapped[str | None] = mapped_column(String, default='Gamer')
+    game_history: Mapped[str | None] = mapped_column(String, default='1')

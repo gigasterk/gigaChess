@@ -1,5 +1,3 @@
-from sqlalchemy.orm import sessionmaker
-
 from config import settings
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 
@@ -18,11 +16,23 @@ class DB:
         self.DB_NAME = DB_NAME
 
         self.engine = create_async_engine(url=self.get_db_url())
-        self.sessionmaker = async_sessionmaker(bind=self.engine)
+        self.session_maker = async_sessionmaker(bind=self.engine)
 
 
     def get_db_url(self):
         return (f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASSWORD}@"
                 f"{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}")
+
+    def connection(self, method):
+        async def wrapper(*args, **kwargs):
+            async with self.session_maker() as session:
+                try:
+                    return await method(*args, session=session, **kwargs)
+                except Exception as e:
+                    await session.rollback()
+                    raise e
+                finally:
+                    await session.close()
+        return wrapper
 
 db = DB()
