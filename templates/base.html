@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GigaChess</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script defer src="../static/scripts/base.js"></script>
+    <link href="../static/styles/base.css" rel="stylesheet">
+</head>
+<body>
+<section class="app">
+    <header>
+    <h1>GigaChess</h1>
+    <menu>
+        <li class="menu__item menu__item-active">Home</li>
+        <li class="menu__item">Replays</li>
+        <li class="menu__item">Masters</li>
+        <li class="menu__item">Online</li>
+        <li class="menu__item">Account</li>
+    </menu>
+</header>
+<section class="content">
+    {% block content %}
+    {% endblock %}
+</section>
+<footer>
+    <div class="footer__column">
+        <h1>GigaChess</h1>
+        <span>Best service for chess game and chess replays <br>archive with advanced technologies</span>
+        <div class="footer__icons">
+            <img src="../static/images/Github.svg" alt="github" class="footer__icon">
+            <img src="../static/images/Reddit.svg" alt="reddit" class="footer__icon">
+            <img src="../static/images/Slack.svg" alt="slack" class="footer__icon">
+            <img src="../static/images/Telegram.svg" alt="telegram" class="footer__icon">
+        </div>
+    </div>
+    <div class="footer__column">
+        <h2>Pages</h2>
+        <span class="pages">Replays</span>
+        <span class="pages">Masters</span>
+        <span class="pages">Online</span>
+        <span class="pages">Account</span>
+    </div>
+    <div class="footer__column">
+        <h2>Info</h2>
+        <span class="info">Cookie</span>
+        <span class="info">Rules</span>
+        <span class="info">Api</span>
+    </div>
+</footer>
+</section>
+</body>
+</html>

@@ -1,0 +1,1 @@
+from .templates_config import env as templates

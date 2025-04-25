@@ -16,4 +16,4 @@ class Setting(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
 
-settings = Setting(_env_file='config.env')
+settings = Setting(_env_file=BASE_DIR / 'config.env')

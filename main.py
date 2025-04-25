@@ -2,10 +2,13 @@ import uvicorn
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from fastapi.openapi.docs import get_swagger_ui_html
+from starlette.responses import HTMLResponse
+from starlette.staticfiles import StaticFiles
 
 from modules import auth_router, Base
 from core.bd import db
+from core import templates
+from config import BASE_DIR
 
 
 @asynccontextmanager
@@ -16,11 +19,13 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan,
               title='Chess',
 )
+
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 app.include_router(auth_router)
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
-    return {"message": "landing page"}
+    return templates.get_template("landing.html").render()
 
 
 
