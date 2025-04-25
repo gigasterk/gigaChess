@@ -8,3 +8,12 @@ class LoginSchema(BaseModel):
 
 class RegisterSchema(LoginSchema):
     email: str
+
+
+class User(BaseModel):
+    username: str
+
+
+class TokenSchema(BaseModel):
+    access_token: str
+    token_type: str

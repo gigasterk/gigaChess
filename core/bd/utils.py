@@ -16,7 +16,10 @@ class DB:
         self.DB_NAME = DB_NAME
 
         self.engine = create_async_engine(url=self.get_db_url())
-        self.session_maker = async_sessionmaker(bind=self.engine)
+        self.session_maker = async_sessionmaker(bind=self.engine,
+                                                expire_on_commit=False,
+                                                autocommit=False,
+                                                autoflush=False)
 
 
     def get_db_url(self):
